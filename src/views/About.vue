@@ -23,11 +23,13 @@ export default {
   },
   components: { ImageContainer },
   mounted() {
-    this.example();
+    if (!this.answer) {
+      this.example();
+    }
   },
   methods: {
     async example() {
-      const apiKey = "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";
+      const apiKey = import.meta.env.CHATGPT_KEY;
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
@@ -58,7 +60,7 @@ export default {
 
 <style scoped lang="scss">
 .about {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   .image {
     float: left;
@@ -70,7 +72,7 @@ export default {
 :deep(h2) {
   font-size: 24px;
   margin-top: 35px;
-  text-align:left;
+  text-align: left;
 }
 :deep(p) {
   text-align: justify;
