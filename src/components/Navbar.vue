@@ -1,7 +1,7 @@
 <template>
   <div class="navbar d-flex align-items-center justify-space-between">
     <div class="logo">
-      <img src="@/assets/images/logo.svg" alt="" />
+      <img src="@/assets/images/logo.svg" alt="" @click="getRandomImages"/>
     </div>
 
     <a href="https://dog.ceo/dog-api/documentation" target="_blank"
@@ -10,24 +10,25 @@
   </div>
 </template>
 
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true,
+<script >
+export default {
+  methods: {
+    async getRandomImages() {
+      await this.$store.dispatch("getRandomImages",10);
+    },
   },
-});
+};
 </script>
 
 <style scoped lang="scss">
 .navbar {
-  padding: 10px 30px;
+  padding: 30px;
   a {
     text-decoration: none;
   }
   .logo {
     img {
-      width: 30px;
+      width: 40px;
     }
   }
 }

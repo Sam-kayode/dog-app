@@ -1,8 +1,11 @@
 import { createApp } from 'vue'
+import store from './store'
 import App from './App.vue'
 import router from './router'
-
 import './assets/base.css'
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://dog.ceo/api/breeds';
 
 // Vuetify
 import 'vuetify/styles'
@@ -16,5 +19,6 @@ const vuetify = createVuetify({
     directives,
   })
 
-app.use(router)
-app.use(vuetify).mount('#app')
+// app.use(store);
+// app.use(router)
+app.use(store).use(router).use(vuetify).mount('#app')
