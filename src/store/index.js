@@ -9,7 +9,7 @@ export default createStore({
   mutations: {
     UPDATE_IMAGES(state, payload) {
       state.images = [...state.images, ...payload];
-    //   console.log(state.images)
+      console.log(state.images)
     },
   },
 
@@ -20,7 +20,7 @@ export default createStore({
         const data = res.data.message;
         commit("UPDATE_IMAGES", data);
       } catch (error) {
-        // console.log(error.messge);
+        console.log(error.messge);
       }
     },
   },

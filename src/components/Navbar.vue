@@ -22,7 +22,7 @@ export default {
 
 <style scoped lang="scss">
 .navbar {
-  padding: 30px;
+  padding: 30px 5%;
   a {
     text-decoration: none;
   }

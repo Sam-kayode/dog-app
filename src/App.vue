@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <Navbar />
-  </div>
-  <RouterView />
+  <Navbar />
+  <div class="app"><RouterView /></div>
 </template>
 <script>
 // import { RouterLink, RouterView } from "vue-router";
@@ -14,10 +12,7 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-body {
-  overflow-y: auto !important;
-  background: red !important;
-  color: red;
-  height: 100vh;
+.app {
+  padding: 0 5%;
 }
 </style>
