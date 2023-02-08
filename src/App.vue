@@ -10,12 +10,12 @@ export default {
     Navbar,
   },
   mounted() {
-    this.getRandomImages();
-    this.getRandomImages();
+    // this.getRandomImages();
+    // this.getRandomImages();
   },
   methods: {
     async getRandomImages() {
-      await this.$store.dispatch("getRandomImages", 50);
+      // await this.$store.dispatch("getRandomImages", 50);
     },
   },
 };
