@@ -1,6 +1,6 @@
 <template>
   <v-row class="search">
-    <v-col cols="12" sm="5" class="ml-auto">
+    <v-col cols="12" sm="5" class="autocomplete">
       <v-autocomplete
         placeholder="Search for Dog breed"
         prepend-inner-icon="mdi-magnify"
@@ -8,10 +8,9 @@
         clearable
         variant="solo"
         density="compact"
-        loading
       ></v-autocomplete
     ></v-col>
-    <div>
+    <div class="filter-cont">
       <v-combobox
         variant="solo"
         placeholder="count"
@@ -26,15 +25,24 @@
 export default {};
 </script>
 
-<style>
+<style lang="scss">
 .search {
   margin-top: 30px;
-  display: flex;
+  padding: 0 10px;
+  display: flex !important;
   align-items: center;
+  justify-content: flex-end;
+
+  .autocomplete {
+    @include mobile {
+      padding: 0;
+    }
+  }
 }
 
-.filter{
-    width:105px;
+.filter-cont {
+  width: 105px !important;
+  padding: 0 !important;
 }
 
 .v-progress-linear__determinate,

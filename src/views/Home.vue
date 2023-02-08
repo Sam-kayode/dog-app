@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <searchbar />
-    <section>
+    <Loader v-if="imageCount" />
+    <section v-else>
       <v-row>
         <v-col
           cols="6"
@@ -22,11 +23,19 @@
 <script>
 import ImageContainer from "../components/ImageContainer.vue";
 import Searchbar from "../components/Searchbar.vue";
+import Loader from "../components/Loader.vue";
 export default {
-  components: { Searchbar, ImageContainer },
+  components: { Searchbar, ImageContainer, Loader },
   computed: {
     allImages() {
       return this.$store.getters.allImages;
+    },
+    imageCount() {
+      if (this.allImages.length < 100) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
   methods: {
@@ -41,5 +50,8 @@ export default {
 <style lang="scss">
 .dog-name {
   text-transform: capitalize;
+  .image {
+    cursor: pointer;
+  }
 }
 </style>
