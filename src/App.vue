@@ -1,18 +1,23 @@
 <template>
   <div>
-
+    <Navbar />
   </div>
   <RouterView />
 </template>
 <script>
 // import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import Navbar from "./components/Navbar.vue";
 export default {
   components: {
-    HelloWorld,
+    Navbar,
   },
 };
 </script>
 <style scoped lang="scss">
-@import './assets/scss/variables'
+body {
+  overflow-y: auto !important;
+  background: red !important;
+  color: red;
+  height: 100vh;
+}
 </style>
