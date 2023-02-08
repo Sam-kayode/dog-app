@@ -39,6 +39,6 @@ export default {};
 
 .v-progress-linear__determinate,
 .v-progress-linear__indeterminate {
-  background: rgb(128, 101, 101) !important;
+  background: #806565 !important;
 }
 </style>

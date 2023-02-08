@@ -1,7 +1,6 @@
 <template>
   <v-img
-    lazy-src="https://picsum.photos/id/11/100/60200"
-    src="https://picsum.photos/id/11/100/6009"
+    :src="src"
     aspect-ratio="1"
     cover
     class="bg-grey-lighten-2 rounded-lg"
@@ -34,7 +33,9 @@ export default {
 .box {
   width: 100%;
   height: 130%;
+  mask: linear-gradient(#000 0 0) top / 100% 100%;
   -webkit-mask: linear-gradient(#000 0 0) top / 100% 100%;
+  mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
   background: linear-gradient(90deg, #ccca 40%, #fffa, #ccca 60%) right/300%
     100%;

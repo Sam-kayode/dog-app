@@ -9,6 +9,15 @@ export default {
   components: {
     Navbar,
   },
+  mounted() {
+    this.getRandomImages();
+    this.getRandomImages();
+  },
+  methods: {
+    async getRandomImages() {
+      await this.$store.dispatch("getRandomImages", 50);
+    },
+  },
 };
 </script>
 <style scoped lang="scss">
