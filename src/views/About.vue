@@ -9,7 +9,7 @@
         alt=""
       /> -->
     </div>
-    <p>{{ answer }}</p>
+    <div v-html="answer"></div>
   </div>
 </template>
 <script>
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async example() {
-      const apiKey = "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";
+      const apiKey = "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";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
@@ -35,9 +35,10 @@ export default {
 
       const data = {
         model: "text-davinci-003",
-        prompt: "70 words essay on german sheperd dogs",
+        prompt:
+          "complete 120 words article about german shepherd dogs in appropriate HTML tags indicating heading ,paragraphand sub-heading ",
         temperature: 0.3,
-        max_tokens: 150,
+        max_tokens: 350,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
@@ -55,15 +56,21 @@ export default {
 };
 </script>
 
-<style scoped>
-.image {
-  float: left;
-  margin-right: 25px;
-  min-width: 30vw;
+<style scoped lang="scss">
+.about {
+  .image {
+    float: left;
+    margin: 0 25px 25px 0;
+    min-width: 35vw;
+  }
 }
-p {
+
+:deep(h2) {
+  font-size: 24px;
+  margin-top: 30px;
+}
+:deep(p) {
   text-align: justify;
-  font-size: 18px;
-  color:red;
+  font-size: 16px;
 }
 </style>
