@@ -15,7 +15,6 @@
       <v-combobox
         variant="solo"
         placeholder="count"
-        v-model="values"
         :items="['poo', 'lop']"
         density="compact"
         class="filter"

@@ -2,7 +2,6 @@
    <v-col cols="1">
       <v-combobox
         variant="solo"
-        v-model="values"
         :items="['poo', 'lop']"
         density="compact"
       ></v-combobox> </v-col
