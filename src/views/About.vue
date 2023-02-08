@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async example() {
-      const apiKey = "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";
+      const apiKey = "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";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
@@ -58,6 +58,8 @@ export default {
 
 <style scoped lang="scss">
 .about {
+  font-family: 'Montserrat', sans-serif;
+
   .image {
     float: left;
     margin: 0 25px 25px 0;
@@ -67,7 +69,8 @@ export default {
 
 :deep(h2) {
   font-size: 24px;
-  margin-top: 30px;
+  margin-top: 35px;
+  text-align:left;
 }
 :deep(p) {
   text-align: justify;

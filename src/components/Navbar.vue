@@ -1,7 +1,11 @@
 <template>
   <div class="navbar d-flex align-items-center justify-space-between">
     <div class="logo">
-      <img src="@/assets/images/logo.svg" alt=""/>
+      <router-link to="/">
+        <img src="@/assets/images/logo.svg" alt="" />
+      </router-link><router-link to="/about">
+        <img src="@/assets/images/logo.svg" alt="" />
+      </router-link>
     </div>
 
     <a href="https://dog.ceo/dog-api/documentation" target="_blank"
@@ -12,9 +16,7 @@
 
 <script >
 export default {
-  methods: {
-    
-  },
+  methods: {},
 };
 </script>
 

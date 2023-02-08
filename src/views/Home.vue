@@ -48,10 +48,13 @@ export default {
 </script>
 
 <style lang="scss">
-.dog-name {
-  text-transform: capitalize;
-  .image {
-    cursor: pointer;
+.home {
+  font-family: "Montserrat", sans-serif;
+  .dog-name {
+    text-transform: capitalize;
+    .image {
+      cursor: pointer;
+    }
   }
 }
 </style>
