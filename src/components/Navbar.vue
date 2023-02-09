@@ -4,11 +4,7 @@
       <router-link to="/">
         <img src="@/assets/images/logo.svg" alt="" />
       </router-link>
-      <router-link to="/about">
-        <img src="@/assets/images/logo.svg" alt="" />
-      </router-link>
     </div>
-
     <a href="https://dog.ceo/dog-api/documentation" target="_blank"
       >Dog-Api documentation</a
     >

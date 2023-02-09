@@ -5,7 +5,6 @@ export default createStore({
   state: {
     images: [],
     detailImage: sessionStorage.getItem("image"),
-    article: "",
     updated: true,
   },
 
@@ -17,9 +16,6 @@ export default createStore({
     UPDATE_DETAIL_IMAGE(state, payload) {
       sessionStorage.setItem("image", payload);
       console.log(sessionStorage.getItem("image"));
-    },
-    SET_ARTICLE(state, payload) {
-      state.article = payload;
     },
     IS_IMAGE_UPDATED(state, payload) {
       state.updated = payload;
@@ -44,9 +40,6 @@ export default createStore({
     },
     getDetailImage() {
       return sessionStorage.getItem("image");
-    },
-    getArticle(state) {
-      return state.article;
     },
     isImageUpdated(state) {
       return state.updated;
