@@ -4,12 +4,10 @@
     <div class="image">
       <image-container :src="getDetailImage" />
     </div>
-    <article-placeholder :dogBreed="$route.params.id"/>
+    <article-placeholder :dogBreed="$route.params.id" />
 
     <h2>More Images</h2>
-    <div class="image-contain">
-      
-    </div>
+    <div class="image-contain"></div>
   </div>
 </template>
 <script>
@@ -25,18 +23,25 @@ export default {
   },
   components: { ImageContainer, Loader, ArticlePlaceholder },
   computed: {
-    getArticle() {
-      return this.$store.getters.getArticle;
-    },
     getDetailImage() {
       return this.$store.getters.getDetailImage;
     },
-    isImageUpdated() {
-      return this.$store.getters.isImageUpdated;
+    params() {
+      return this.$route.params.id;
     },
   },
   mounted() {
-   
+    if (this.params.includes("-")) {
+      this.$store.dispatch("getRandomBreedImg", this.params.split("-")[0]);
+    } else {
+      this.$store.dispatch("getRandomBreedImg", this.params);
+    }
+  },
+  methods: {
+    getDogName(url) {
+      let arr = url.split("/");
+      return arr[4];
+    },
   },
 };
 </script>

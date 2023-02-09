@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <searchbar />
-    <Loader v-if="imageCount" />
+    <Loader v-if="$store.state.load" />
     <section v-else>
       <v-row>
         <v-col
@@ -29,23 +29,24 @@ export default {
   components: { Searchbar, ImageContainer, Loader },
   computed: {
     allImages() {
-      return this.$store.getters.allImages;
-    },
-    imageCount() {
-      if (this.allImages.length < 100) {
-        return true;
+      if (this.filteredImages[0]) {
+        return this.filteredImages;
       } else {
-        return false;
+        return this.$store.getters.allImages;
       }
     },
-    getDetailImage() {
-      return this.$store.getters.getDetailImage;
-    },
+    filteredImages(){
+      return this.$store.state.filteredImages
+    }
   },
   methods: {
     getDogName(url) {
       let arr = url.split("/");
       return arr[4];
+    },
+    goToDetails(url) {
+      this.$store.commit("UPDATE_DETAIL_IMAGE", url);
+      this.$router.push(`/about/${this.getDogName(url)}`);
     },
   },
 };

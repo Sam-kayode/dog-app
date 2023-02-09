@@ -1,7 +1,5 @@
 <template>
-  <!-- {{ $store.getters.allBreeds }} -->
-  {{ breed }}
-  <v-row class="search">
+  <v-row class="search" v-if="!$store.state.load">
     <v-col cols="12" sm="5" class="autocomplete">
       <v-autocomplete
         placeholder="Search for Dog breed"
@@ -12,21 +10,44 @@
         density="compact"
         :items="$store.getters.allBreeds"
         v-model="breed"
+        :loading="loading"
       ></v-autocomplete
     ></v-col>
   </v-row>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
-    return { breed: "" };
+    return { breed: "", loading: false };
   },
-  watch:{
-    breed(){
-        
-    }
-  }
+  watch: {
+    breed() {
+      if (this.breed) {
+        this.imagesByBreed();
+      } else {
+        this.$store.commit("REPLACE_IMAGES", []);
+      }
+    },
+  },
+  computed: {},
+  methods: {
+    async imagesByBreed() {
+      this.loading = true;
+      try {
+        const res = await axios.get(`/breed/${this.breed}/images`);
+        const data = res.data.message;
+        this.$store.commit("REPLACE_IMAGES", data);
+      } catch (error) {
+        console.log(error);
+      }
+      this.loading = false;
+    },
+    getRandomImages() {
+      this.$store.dispatch("getRandomImages", 50);
+    },
+  },
 };
 </script>
 

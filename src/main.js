@@ -7,7 +7,7 @@ import axios from 'axios';
 import vuetify from './plugins/vuetify' ;
 
 
-axios.defaults.baseURL = 'https://dog.ceo/api/breeds';
+axios.defaults.baseURL = 'https://dog.ceo/api';
 
 const app = createApp(App)
 
