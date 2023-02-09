@@ -1,18 +1,27 @@
 <template>
-  <div>
-
-  </div>
-  <RouterView />
+  <Navbar />
+  <div class="app"><RouterView /></div>
 </template>
 <script>
 // import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import Navbar from "./components/Navbar.vue";
 export default {
   components: {
-    HelloWorld,
+    Navbar,
+  },
+  mounted() {
+    this.getRandomImages();
+    this.getRandomImages();
+  },
+  methods: {
+    async getRandomImages() {
+      await this.$store.dispatch("getRandomImages", 50);
+    },
   },
 };
 </script>
 <style scoped lang="scss">
-@import './assets/scss/variables'
+.app {
+  padding: 0 5%;
+}
 </style>
