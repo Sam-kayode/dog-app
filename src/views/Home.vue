@@ -57,9 +57,9 @@ export default {
   font-family: "Montserrat", sans-serif;
   .dog-name {
     text-transform: capitalize;
-    .image {
+   
+  } .image {
       cursor: pointer;
     }
-  }
 }
 </style>
