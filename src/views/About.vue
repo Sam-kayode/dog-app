@@ -4,16 +4,11 @@
       <image-container
         src="https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074__340.jpg"
       />
-      <!-- <img
-        src="https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074__340.jpg"
-        alt=""
-      /> -->
     </div>
-    <div v-html="answer"></div>
+    <div v-html="getArticle"></div>
   </div>
 </template>
 <script>
-import axios from "axios";
 import ImageContainer from "../components/ImageContainer.vue";
 export default {
   data() {
@@ -22,14 +17,18 @@ export default {
     };
   },
   components: { ImageContainer },
-  mounted() {
-    if (!this.answer) {
-      this.example();
+  computed: {
+    getArticle(){
+      return this.$store.getters.getArticle;
+
     }
   },
-  methods: {
-   
+  mounted() {
+    if (!this.answer) {
+      this.$store.dispatch("generateContent", "german Sheperd");
+    }
   },
+  methods: {},
 };
 </script>
 
