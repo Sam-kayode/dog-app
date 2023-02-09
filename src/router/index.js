@@ -9,12 +9,14 @@ const router = createRouter({
       name: "home",
       component: HomeView,
     },
+    
     {
       path: "/about",
       redirect: (to) => {
         return { path: "/" };
       },
     },
+
     {
       path: "/:pathMatch(.*)",
       redirect: (to) => {
