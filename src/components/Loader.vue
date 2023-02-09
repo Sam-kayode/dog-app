@@ -33,7 +33,7 @@ export default {
 
   img {
     width: 100px;
-    margin-top: 50px;
+    margin-top: 10px;
   }
 
   .linear-progress {
