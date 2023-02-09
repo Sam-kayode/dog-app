@@ -5,20 +5,18 @@ export default createStore({
   state: {
     images: [],
     detailImage: sessionStorage.getItem("image"),
-    updated: true,
+    list: [],
   },
 
   mutations: {
     UPDATE_IMAGES(state, payload) {
       state.images = [...state.images, ...payload];
-      //   console.log(state.images);
     },
     UPDATE_DETAIL_IMAGE(state, payload) {
       sessionStorage.setItem("image", payload);
-      console.log(sessionStorage.getItem("image"));
     },
-    IS_IMAGE_UPDATED(state, payload) {
-      state.updated = payload;
+    UPDATE_LIST(state, payload) {
+      state.list = payload;
     },
   },
 
@@ -28,6 +26,15 @@ export default createStore({
         const res = await axios.get(`image/random/${payload}`);
         const data = res.data.message;
         commit("UPDATE_IMAGES", data);
+      } catch (error) {
+        console.log(error.messge);
+      }
+    },
+    async getBreedList({ commit }) {
+      try {
+        const res = await axios.get(`list/all`);
+        const data = res.data.message;
+        commit("UPDATE_LIST", data);
       } catch (error) {
         console.log(error.messge);
       }
@@ -44,5 +51,10 @@ export default createStore({
     isImageUpdated(state) {
       return state.updated;
     },
+    allBreeds(state){
+        const list=state.list
+       return Object.keys(list)
+
+    }
   },
 });

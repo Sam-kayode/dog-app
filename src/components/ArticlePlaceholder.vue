@@ -1,5 +1,5 @@
 <template>
-  <h1>{{Dogbreed}} Dogs</h1>
+  <h1 style="text-transform: capitalize">{{ dogBreed }} Dogs</h1>
   <p>
     Dogs are known as one of the most popular pets in the world. They are not
     just pets but are also considered as a part of the family by many. Dogs are

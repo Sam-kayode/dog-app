@@ -47,17 +47,6 @@ export default {
       let arr = url.split("/");
       return arr[4];
     },
-    goToDetails(url) {
-      //to check if its the same dog breed thats in Vuex store
-      if (this.getDogName(url) === this.getDogName(this.getDetailImage)) {
-        this.$store.commit("IS_IMAGE_UPDATED", false);
-        this.$router.push(`/about/${this.getDogName(url)}`);
-      } else {
-        this.$store.commit("IS_IMAGE_UPDATED", true);
-        this.$store.commit("UPDATE_DETAIL_IMAGE", url);
-        this.$router.push(`/about/${this.getDogName(url)}`);
-      }
-    },
   },
 };
 </script>

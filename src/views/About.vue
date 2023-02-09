@@ -4,7 +4,12 @@
     <div class="image">
       <image-container :src="getDetailImage" />
     </div>
-    <article-placeholder :dogName="dogBreed"/>
+    <article-placeholder :dogBreed="$route.params.id"/>
+
+    <h2>More Images</h2>
+    <div class="image-contain">
+      
+    </div>
   </div>
 </template>
 <script>
@@ -28,9 +33,6 @@ export default {
     },
     isImageUpdated() {
       return this.$store.getters.isImageUpdated;
-    },
-    dogBreed() {
-      return this.$route.params.id;
     },
   },
   mounted() {

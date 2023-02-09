@@ -1,4 +1,6 @@
 <template>
+  <!-- {{ $store.getters.allBreeds }} -->
+  {{ breed }}
   <v-row class="search">
     <v-col cols="12" sm="5" class="autocomplete">
       <v-autocomplete
@@ -8,13 +10,24 @@
         clearable
         variant="solo"
         density="compact"
+        :items="$store.getters.allBreeds"
+        v-model="breed"
       ></v-autocomplete
     ></v-col>
   </v-row>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return { breed: "" };
+  },
+  watch:{
+    breed(){
+        
+    }
+  }
+};
 </script>
 
 <style lang="scss">
