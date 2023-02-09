@@ -1,13 +1,15 @@
 <template>
-  <div class="navbar d-flex align-items-center justify-space-between">
+  <div class="navbar d-flex align-center justify-space-between">
     <div class="logo">
       <router-link to="/">
         <img src="@/assets/images/logo.svg" alt="" />
       </router-link>
     </div>
-    <a href="https://dog.ceo/dog-api/documentation" target="_blank"
-      >Dog-Api documentation</a
-    >
+    <div class="d-flex align-center">
+      <a href="https://dog.ceo/dog-api/documentation" target="_blank"
+        ><p>Dog-Api documentation</p></a
+      >
+    </div>
   </div>
 </template>
 

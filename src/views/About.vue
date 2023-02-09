@@ -7,7 +7,11 @@
     <article-placeholder :dogBreed="$route.params.id" />
 
     <h2>More Images</h2>
-    <div class="image-contain"></div>
+    <div class="image-flex">
+      <div class="" v-for="(image, i) in getDetailImages" :key="i">
+        <image-container class="image-cont" :src="image" />
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -25,6 +29,9 @@ export default {
   computed: {
     getDetailImage() {
       return this.$store.getters.getDetailImage;
+    },
+    getDetailImages() {
+      return this.$store.getters.getDetailImages;
     },
     params() {
       return this.$route.params.id;
@@ -54,7 +61,38 @@ export default {
     float: left;
     margin: 0 25px 25px 0;
     min-width: 35vw;
+    @include mobile {
+      width: 100%;
+    }
   }
+}
+.image-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  width: calc(100vw - 10vw);
+  overflow-x: auto;
+  margin-bottom: 100px;
+  margin-top: 20px;
+  padding-bottom: 30px;
+
+  &::-webkit-scrollbar {
+    height: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background: #d3d3d3;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #806565;
+    border-radius: 20px;
+    border: 3.5px solid #d3d3d3;
+  }
+}
+.image-cont {
+  width: 200px !important;
+  margin-right: 20px;
+  flex: 0 0 100px;
 }
 
 :deep(h2) {

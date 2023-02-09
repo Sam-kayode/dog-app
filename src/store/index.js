@@ -40,7 +40,7 @@ export default createStore({
         const data = res.data.message;
         commit("UPDATE_IMAGES", data);
       } catch (error) {
-        console.log(error.messge);
+        console.log(error);
       }
       commit("PRELOAD_STATE", false);
     },
@@ -48,9 +48,10 @@ export default createStore({
       try {
         const res = await axios.get(`/breed/${payload}/images/random/10`);
         const data = res.data.message;
+        console.log(data);
         commit("UPDATE_MORE_IMAGES", data);
       } catch (error) {
-        console.log(error.messge);
+        console.log(error);
       }
     },
     async getBreedList({ commit }) {
@@ -59,7 +60,7 @@ export default createStore({
         const data = res.data.message;
         commit("UPDATE_LIST", data);
       } catch (error) {
-        console.log(error.messge);
+        console.log(error);
       }
     },
   },
@@ -70,6 +71,9 @@ export default createStore({
     },
     getDetailImage() {
       return sessionStorage.getItem("image");
+    },
+    getDetailImages(state) {
+      return state.moreImages;
     },
     isImageUpdated(state) {
       return state.updated;
