@@ -5,7 +5,7 @@ export default createStore({
   state: {
     images: [],
     filteredImages: [],
-    detailImage: sessionStorage.getItem("image"),
+    detailImage: "",
     list: [],
     load: true,
     moreImages: [],
@@ -19,7 +19,7 @@ export default createStore({
       state.moreImages = [...payload];
     },
     UPDATE_DETAIL_IMAGE(state, payload) {
-      sessionStorage.setItem("image", payload);
+      state.detailImage=payload;
     },
     UPDATE_LIST(state, payload) {
       state.list = payload;
@@ -68,8 +68,8 @@ export default createStore({
     allImages(state) {
       return state.images;
     },
-    getDetailImage() {
-      return sessionStorage.getItem("image");
+    getDetailImage(state) {
+      return state.detailImage
     },
     getDetailImages(state) {
       return state.moreImages;
