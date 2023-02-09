@@ -6,7 +6,7 @@ export default createStore({
     images: [],
     detailImage: sessionStorage.getItem("image"),
     article: "",
-    updated: null,
+    updated: true,
   },
 
   mutations: {
