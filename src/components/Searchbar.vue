@@ -1,5 +1,5 @@
 <template>
-  <v-row class="search">
+  <v-row class="search" v-if="!$store.state.load">
     <v-col cols="12" sm="5" class="autocomplete">
       <v-autocomplete
         placeholder="Search for Dog breed"
@@ -8,21 +8,47 @@
         clearable
         variant="solo"
         density="compact"
+        :items="$store.getters.allBreeds"
+        v-model="breed"
+        :loading="loading"
       ></v-autocomplete
     ></v-col>
-    <div class="filter-cont">
-      <v-combobox
-        variant="solo"
-        placeholder="count"
-        :items="['poo', 'lop']"
-        density="compact"
-        class="filter"
-      ></v-combobox></div
-  ></v-row>
+  </v-row>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  data() {
+    return { breed: "", loading: false };
+  },
+  watch: {
+    breed() {
+      if (this.breed) {
+        this.imagesByBreed();
+      } else {
+        this.$store.commit("REPLACE_IMAGES", []);
+      }
+    },
+  },
+  computed: {},
+  methods: {
+    async imagesByBreed() {
+      this.loading = true;
+      try {
+        const res = await axios.get(`/breed/${this.breed}/images`);
+        const data = res.data.message;
+        this.$store.commit("REPLACE_IMAGES", data);
+      } catch (error) {
+        console.log(error);
+      }
+      this.loading = false;
+    },
+    getRandomImages() {
+      this.$store.dispatch("getRandomImages", 50);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
