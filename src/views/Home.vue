@@ -11,6 +11,7 @@
           v-for="(image, index) in allImages"
           :key="index"
           class="image"
+          @click="$router.push(`/about/${getDogName(image)}`)"
         >
           <image-container :src="image" />
           <p class="mx-auto text-center dog-name">{{ getDogName(image) }}</p>

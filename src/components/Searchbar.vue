@@ -10,15 +10,7 @@
         density="compact"
       ></v-autocomplete
     ></v-col>
-    <div class="filter-cont">
-      <v-combobox
-        variant="solo"
-        placeholder="count"
-        :items="['poo', 'lop']"
-        density="compact"
-        class="filter"
-      ></v-combobox></div
-  ></v-row>
+  </v-row>
 </template>
 
 <script>

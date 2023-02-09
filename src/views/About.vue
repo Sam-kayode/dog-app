@@ -9,6 +9,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import ImageContainer from "../components/ImageContainer.vue";
 export default {
   data() {
@@ -18,17 +19,47 @@ export default {
   },
   components: { ImageContainer },
   computed: {
-    getArticle(){
+    getArticle() {
       return this.$store.getters.getArticle;
-
+    },
+    dogBreed(){
+      return this.$route.params.id
     }
   },
   mounted() {
     if (!this.answer) {
-      this.$store.dispatch("generateContent", "german Sheperd");
+      this.generateContent(this.dogBreed);
     }
   },
-  methods: {},
+  methods: {
+    async generateContent(payload) {
+      const apiKey = import.meta.env.VITE_CHATGPT_KEY;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      };
+
+      const data = {
+        model: "text-davinci-003",
+        prompt: `complete 120 words article about ${payload} dogs in appropriate HTML tags indicating heading ,paragraphand sub-heading on history, appearance and personality`,
+        temperature: 0.3,
+        max_tokens: 350,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      };
+
+      const res = await axios.post(
+        "https://api.openai.com/v1/completions",
+        data,
+        { headers }
+      );
+      console.log(res);
+      const answer = res.data.choices[0].text;
+
+      this.$store.commit("SET_ARTICLE", answer);
+    },
+  },
 };
 </script>
 
