@@ -1,9 +1,8 @@
 <template>
-  <div class="about">
+  <Loader v-if="loading"/>
+  <div class="about" v-else>
     <div class="image">
-      <image-container
-        src="https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074__340.jpg"
-      />
+      <image-container :src="getDetailImage" />
     </div>
     <div v-html="getArticle"></div>
   </div>
@@ -11,23 +10,31 @@
 <script>
 import axios from "axios";
 import ImageContainer from "../components/ImageContainer.vue";
+import Loader from "../components/Loader.vue";
 export default {
   data() {
     return {
       answer: "",
+      loading: false,
     };
   },
-  components: { ImageContainer },
+  components: { ImageContainer, Loader },
   computed: {
     getArticle() {
       return this.$store.getters.getArticle;
     },
-    dogBreed(){
-      return this.$route.params.id
-    }
+    getDetailImage() {
+      return this.$store.getters.getDetailImage;
+    },
+    isImageUpdated() {
+      return this.$store.getters.isImageUpdated;
+    },
+    dogBreed() {
+      return this.$route.params.id;
+    },
   },
   mounted() {
-    if (!this.answer) {
+    if (this.isImageUpdated) {
       this.generateContent(this.dogBreed);
     }
   },
@@ -41,7 +48,7 @@ export default {
 
       const data = {
         model: "text-davinci-003",
-        prompt: `complete 120 words article about ${payload} dogs in appropriate HTML tags indicating heading ,paragraphand sub-heading on history, appearance and personality`,
+        prompt: `complete 120 words article about ${payload} dog breed in appropriate HTML tags indicating heading ,paragraphand sub-heading on history, appearance and personality`,
         temperature: 0.3,
         max_tokens: 350,
         top_p: 1,
@@ -58,6 +65,12 @@ export default {
       const answer = res.data.choices[0].text;
 
       this.$store.commit("SET_ARTICLE", answer);
+    },
+    getDogName(url) {
+      if (url) {
+        let arr = url.split("/");
+        return arr[4];
+      }
     },
   },
 };

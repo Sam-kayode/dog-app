@@ -4,20 +4,25 @@ import axios from "axios";
 export default createStore({
   state: {
     images: [],
-    detailImage: "",
+    detailImage: sessionStorage.getItem("image"),
     article: "",
+    updated: null,
   },
 
   mutations: {
     UPDATE_IMAGES(state, payload) {
       state.images = [...state.images, ...payload];
-      console.log(state.images);
+      //   console.log(state.images);
     },
     UPDATE_DETAIL_IMAGE(state, payload) {
-      state.detailImage = payload;
+      sessionStorage.setItem("image", payload);
+      console.log(sessionStorage.getItem("image"));
     },
     SET_ARTICLE(state, payload) {
       state.article = payload;
+    },
+    IS_IMAGE_UPDATED(state, payload) {
+      state.updated = payload;
     },
   },
 
@@ -31,18 +36,20 @@ export default createStore({
         console.log(error.messge);
       }
     },
-  
   },
 
   getters: {
     allImages(state) {
       return state.images;
     },
-    getDetailImage(state) {
-      return state.detailImage;
+    getDetailImage() {
+      return sessionStorage.getItem("image");
     },
     getArticle(state) {
       return state.article;
+    },
+    isImageUpdated(state) {
+      return state.updated;
     },
   },
 });

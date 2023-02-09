@@ -11,7 +11,7 @@
           v-for="(image, index) in allImages"
           :key="index"
           class="image"
-          @click="$router.push(`/about/${getDogName(image)}`)"
+          @click="goToDetails(image)"
         >
           <image-container :src="image" />
           <p class="mx-auto text-center dog-name">{{ getDogName(image) }}</p>
@@ -38,11 +38,25 @@ export default {
         return false;
       }
     },
+    getDetailImage() {
+      return this.$store.getters.getDetailImage;
+    },
   },
   methods: {
     getDogName(url) {
       let arr = url.split("/");
       return arr[4];
+    },
+    goToDetails(url) {
+      //to check if its the same dog breed thats in Vuex store
+      if (this.getDogName(url) === this.getDogName(this.getDetailImage)) {
+        this.$store.commit("IS_IMAGE_UPDATED", false);
+        this.$router.push(`/about/${this.getDogName(url)}`);
+      } else {
+        this.$store.commit("IS_IMAGE_UPDATED", true);
+        this.$store.commit("UPDATE_DETAIL_IMAGE", url);
+        this.$router.push(`/about/${this.getDogName(url)}`);
+      }
     },
   },
 };
