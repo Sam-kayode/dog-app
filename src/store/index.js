@@ -48,7 +48,6 @@ export default createStore({
       try {
         const res = await axios.get(`/breed/${payload}/images/random/10`);
         const data = res.data.message;
-        console.log(data);
         commit("UPDATE_MORE_IMAGES", data);
       } catch (error) {
         console.log(error);
