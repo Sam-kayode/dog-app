@@ -10,12 +10,17 @@ export default {
     Navbar,
   },
   mounted() {
+    this.getBreedList()
     this.getRandomImages();
     this.getRandomImages();
+
   },
   methods: {
     async getRandomImages() {
       await this.$store.dispatch("getRandomImages", 50);
+    },
+    async getBreedList() {
+      await this.$store.dispatch("getBreedList");
     },
   },
 };

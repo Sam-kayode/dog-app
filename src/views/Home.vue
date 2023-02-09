@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <searchbar />
-    <Loader v-if="imageCount" />
+    <Loader v-if="$store.state.load" />
     <section v-else>
       <v-row>
         <v-col
@@ -11,6 +11,7 @@
           v-for="(image, index) in allImages"
           :key="index"
           class="image"
+          @click="goToDetails(image)"
         >
           <image-container :src="image" />
           <p class="mx-auto text-center dog-name">{{ getDogName(image) }}</p>
@@ -28,30 +29,37 @@ export default {
   components: { Searchbar, ImageContainer, Loader },
   computed: {
     allImages() {
-      return this.$store.getters.allImages;
-    },
-    imageCount() {
-      if (this.allImages.length < 100) {
-        return true;
+      if (this.filteredImages[0]) {
+        return this.filteredImages;
       } else {
-        return false;
+        return this.$store.getters.allImages;
       }
     },
+    filteredImages(){
+      return this.$store.state.filteredImages
+    }
   },
   methods: {
     getDogName(url) {
       let arr = url.split("/");
       return arr[4];
     },
+    goToDetails(url) {
+      this.$store.commit("UPDATE_DETAIL_IMAGE", url);
+      this.$router.push(`/about/${this.getDogName(url)}`);
+    },
   },
 };
 </script>
 
 <style lang="scss">
-.dog-name {
-  text-transform: capitalize;
-  .image {
-    cursor: pointer;
+.home {
+  font-family: "Montserrat", sans-serif;
+  .dog-name {
+    text-transform: capitalize;
+    .image {
+      cursor: pointer;
+    }
   }
 }
 </style>
