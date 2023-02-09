@@ -2,7 +2,7 @@
   <Loader v-if="loading" />
   <div class="about" v-else>
     <div class="image">
-      <image-container :src="getDetailImage" />
+      <image-container :src="getDetailImage ? getDetailImage:getDetailImages[0]" />
     </div>
     <article-placeholder :dogBreed="$route.params.id" />
 
