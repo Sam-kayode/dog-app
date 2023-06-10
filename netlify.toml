@@ -3,6 +3,8 @@
   to = "/index.html"
   status = 200
   
+
+# example netlify.toml
 # example netlify.toml
 
 [build]

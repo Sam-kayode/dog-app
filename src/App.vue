@@ -3,7 +3,8 @@
   <div class="app"><RouterView /></div>
 </template>
 <script>
-// import { RouterLink, RouterView } from "vue-router";
+
+import { RouterLink, RouterView } from "vue-router";
 import Navbar from "./components/Navbar.vue";
 export default {
   components: {
@@ -27,6 +28,6 @@ export default {
 </script>
 <style scoped lang="scss">
 .app {
-  padding: 0 5%;
+  padding: 0 5.5%;
 }
 </style>
