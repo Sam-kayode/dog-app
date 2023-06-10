@@ -28,6 +28,6 @@ export default {
 </script>
 <style scoped lang="scss">
 .app {
-  padding: 0 6%;
+  padding: 2% 6%;
 }
 </style>
